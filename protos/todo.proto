@@ -1,0 +1,97 @@
+syntax = "proto3";
+
+package todo;
+
+// Создаем необходимые методы и типы данных
+
+// Структура json-ответа
+message Todo {
+  uint64 id = 1;
+  string name = 2;
+  bool completed = 3;
+  uint64 day = 4;
+}
+
+
+// Методы для создания объекта таблицы todo. CreateTodoRequest создает объект
+message CreateTodoRequest {
+  string name = 1;
+  bool completed = 2;
+  uint64 day = 3;
+}
+
+// После создания объекта в БД возвращается id этого объекта
+message CreateTodoResponse {
+  Todo todo = 1;
+}
+
+
+// Запрос на получение списка объектов Todo из БД
+message ListTodosRequest {}
+
+// Ответ: получение списка объектов Todo из БД
+message ListTodosResponse {
+  repeated Todo todos = 1;
+}
+
+
+// Запрос на получение объекта Todo по его Id
+message GetTodoIdRequest {
+  uint64 id = 1;
+}
+
+message GetTodoIdResponse {
+  optional Todo todo = 1;
+}
+
+// Запрос на обновление объекта
+message UpdateTodoIdRequest{
+  uint64 id = 1;
+  string name = 2;
+  bool completed = 3;
+
+}
+
+message UpdateTodoIdResponse{
+  Todo todo = 1;
+}
+
+// Запрос на удаление объекта
+
+message DeleteTodoRequest {
+  uint64 id = 1;
+}
+
+message DeleteTodoResponse {
+  bool success = 1;
+}
+
+// Создаем сервис
+
+service TodoService {
+  // Создаем метод, который надо будет реализовать
+  rpc CreateTodo(CreateTodoRequest) returns (CreateTodoResponse);
+  rpc ListTodos(ListTodosRequest) returns (ListTodosResponse);
+  rpc GetTodoId(GetTodoIdRequest) returns (GetTodoIdResponse);
+  rpc UpdateTodoId(UpdateTodoIdRequest) returns (UpdateTodoIdResponse);
+  rpc DeleteTodoId(DeleteTodoRequest) returns (DeleteTodoResponse);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
