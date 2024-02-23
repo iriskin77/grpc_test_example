@@ -1,12 +1,12 @@
-from sqlalchemy import Column, String, Integer, Text, DateTime, ForeignKey, Boolean, Date
-from core.base import Base
+from piccolo.columns import Boolean, Varchar, Integer
+from piccolo.engine.sqlite import SQLiteEngine
+from piccolo.table import Table
 
 
-class Todo(Base):
+DB = SQLiteEngine("bd.sqlite")
 
-    __tablename__ = 'todo'
 
-    id = Column(Integer, primary_key=True, index=True, unique=True)
-    name = Column(String)
-    completed = Column(Boolean, default=False)
-    day = Column(Integer, default=0)
+class Todo(Table, db=DB):
+    name = Varchar()
+    completed = Boolean(default=False)
+    day = Integer(default=0)
