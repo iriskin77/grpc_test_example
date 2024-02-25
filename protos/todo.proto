@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package todo;
 
+import "protos/approver.proto";
+
 // Создаем необходимые методы и типы данных
 
 // Структура json-ответа
@@ -66,6 +68,14 @@ message DeleteTodoResponse {
   bool success = 1;
 }
 
+// Запрос к сервису approver из сервиса todo
+
+message GetTodoApproverResponse {
+  optional Todo todo = 1;
+  optional approver.Approver approver = 2;
+}
+
+
 // Создаем сервис
 
 service TodoService {
@@ -75,6 +85,8 @@ service TodoService {
   rpc GetTodoId(GetTodoIdRequest) returns (GetTodoIdResponse);
   rpc UpdateTodoId(UpdateTodoIdRequest) returns (UpdateTodoIdResponse);
   rpc DeleteTodoId(DeleteTodoRequest) returns (DeleteTodoResponse);
+  // approver service, который будем использовать в microservices/todo
+  rpc GetTodoApprover(GetTodoIdRequest) returns (GetTodoApproverResponse);
 }
 
 

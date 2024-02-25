@@ -1,7 +1,8 @@
 from grpc import aio
-from protos import todo_pb2_grpc
+from protos import todo_pb2_grpc, approver_pb2_grpc, approver_pb2
 from protos import todo_pb2
 from handlers.models import Todo
+from client import grpc_todo_approver
 
 
 class TodoService(todo_pb2_grpc.TodoServiceServicer):
@@ -19,6 +20,7 @@ class TodoService(todo_pb2_grpc.TodoServiceServicer):
 
     async def ListTodos(self, request, context):
         todo = await Todo.select()
+        print(todo)
         print('ListTodos')
         return todo_pb2.ListTodosResponse(todos=todo)
 
@@ -41,6 +43,22 @@ class TodoService(todo_pb2_grpc.TodoServiceServicer):
         await Todo.delete().where(Todo.id == request.id)
         print('DeleteTodoId')
         return todo_pb2.DeleteTodoResponse(success=True)
+
+    async def GetTodoApprover(self, request, context):
+
+        todo = await Todo.select().where(Todo.id == request.id).first()
+        print('GetTodoApprover')
+
+        if todo:
+            # Подключаемся к клиенту сервиса Approver
+            client = await grpc_todo_approver()
+            # Отправляем ему запрос (реализуем метод ApproverService из approver.proto)
+            req = await client.GetApprover(approver_pb2.GetApproverRequest(day=todo['day']), timeout=5)
+
+            return todo_pb2.GetTodoApproverResponse(todo=todo, approver=req.approver)
+
+        else:
+            return todo_pb2.GetTodoApproverResponse(todo=None, approver=None)
 
 
 async def run_server(address):

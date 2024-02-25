@@ -1,3 +1,4 @@
+from protos import approver_pb2 as _approver_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
@@ -82,3 +83,11 @@ class DeleteTodoResponse(_message.Message):
     SUCCESS_FIELD_NUMBER: _ClassVar[int]
     success: bool
     def __init__(self, success: bool = ...) -> None: ...
+
+class GetTodoApproverResponse(_message.Message):
+    __slots__ = ("todo", "approver")
+    TODO_FIELD_NUMBER: _ClassVar[int]
+    APPROVER_FIELD_NUMBER: _ClassVar[int]
+    todo: Todo
+    approver: _approver_pb2.Approver
+    def __init__(self, todo: _Optional[_Union[Todo, _Mapping]] = ..., approver: _Optional[_Union[_approver_pb2.Approver, _Mapping]] = ...) -> None: ...

@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package approver;
+
+import "google/protobuf/wrappers.proto";
+
+// Тип данных Approver. Оособый тип данных из импорта позволяет показывать False в ответе, а не пустой словарь
+message Approver {
+  google.protobuf.BoolValue status = 1;
+}
+
+message GetApproverRequest {
+  int32 day = 1;
+}
+
+// Должен возвратить словарь со статуоом: разрешено или нет.
+message GetApproverResponse {
+  Approver approver = 1;
+}
+
+service ApproverService {
+  rpc GetApprover(GetApproverRequest) returns (GetApproverResponse);
+}

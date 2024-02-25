@@ -41,6 +41,11 @@ class TodoServiceStub(object):
                 request_serializer=protos_dot_todo__pb2.DeleteTodoRequest.SerializeToString,
                 response_deserializer=protos_dot_todo__pb2.DeleteTodoResponse.FromString,
                 )
+        self.GetTodoApprover = channel.unary_unary(
+                '/todo.TodoService/GetTodoApprover',
+                request_serializer=protos_dot_todo__pb2.GetTodoIdRequest.SerializeToString,
+                response_deserializer=protos_dot_todo__pb2.GetTodoApproverResponse.FromString,
+                )
 
 
 class TodoServiceServicer(object):
@@ -79,6 +84,13 @@ class TodoServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetTodoApprover(self, request, context):
+        """approver service
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_TodoServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -106,6 +118,11 @@ def add_TodoServiceServicer_to_server(servicer, server):
                     servicer.DeleteTodoId,
                     request_deserializer=protos_dot_todo__pb2.DeleteTodoRequest.FromString,
                     response_serializer=protos_dot_todo__pb2.DeleteTodoResponse.SerializeToString,
+            ),
+            'GetTodoApprover': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetTodoApprover,
+                    request_deserializer=protos_dot_todo__pb2.GetTodoIdRequest.FromString,
+                    response_serializer=protos_dot_todo__pb2.GetTodoApproverResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -201,5 +218,22 @@ class TodoService(object):
         return grpc.experimental.unary_unary(request, target, '/todo.TodoService/DeleteTodoId',
             protos_dot_todo__pb2.DeleteTodoRequest.SerializeToString,
             protos_dot_todo__pb2.DeleteTodoResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetTodoApprover(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/todo.TodoService/GetTodoApprover',
+            protos_dot_todo__pb2.GetTodoIdRequest.SerializeToString,
+            protos_dot_todo__pb2.GetTodoApproverResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -1,7 +1,5 @@
 import typing
-
 from grpc.aio import AioRpcError
-
 from client import grpc_todo_client
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import JSONResponse
@@ -36,13 +34,15 @@ async def create_todo(name: str,
         raise HTTPException(status_code=404, detail=ex.details())
 
 
-@router.get('/todos')
+@router.get('/get_todos')
 async def get_list_todos(client: typing.Any = Depends(grpc_todo_client)) -> JSONResponse:
     try:
+        print('get_list_todos')
         todos = await client.ListTodos(todo_pb2.ListTodosRequest())
-        return JSONResponse(MessageToDict(todos))
     except AioRpcError as ex:
         raise HTTPException(status_code=404, detail=ex.details())
+    print('get_list_todos')
+    return JSONResponse(MessageToDict(todos))
 
 
 @router.put('/')

@@ -1,4 +1,4 @@
-from services.todo import run_server
+from microservices.todo import run_server
 from core.settings import TODO_GRPC_SERVER_ADDR
 import asyncio
 

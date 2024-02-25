@@ -12,37 +12,40 @@ from google.protobuf.internal import builder as _builder
 _sym_db = _symbol_database.Default()
 
 
+from protos import approver_pb2 as protos_dot_approver__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11protos/todo.proto\x12\x04todo\"@\n\x04Todo\x12\n\n\x02id\x18\x01 \x01(\x04\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x11\n\tcompleted\x18\x03 \x01(\x08\x12\x0b\n\x03\x64\x61y\x18\x04 \x01(\x04\"A\n\x11\x43reateTodoRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x11\n\tcompleted\x18\x02 \x01(\x08\x12\x0b\n\x03\x64\x61y\x18\x03 \x01(\x04\".\n\x12\x43reateTodoResponse\x12\x18\n\x04todo\x18\x01 \x01(\x0b\x32\n.todo.Todo\"\x12\n\x10ListTodosRequest\".\n\x11ListTodosResponse\x12\x19\n\x05todos\x18\x01 \x03(\x0b\x32\n.todo.Todo\"\x1e\n\x10GetTodoIdRequest\x12\n\n\x02id\x18\x01 \x01(\x04\";\n\x11GetTodoIdResponse\x12\x1d\n\x04todo\x18\x01 \x01(\x0b\x32\n.todo.TodoH\x00\x88\x01\x01\x42\x07\n\x05_todo\"B\n\x13UpdateTodoIdRequest\x12\n\n\x02id\x18\x01 \x01(\x04\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x11\n\tcompleted\x18\x03 \x01(\x08\"0\n\x14UpdateTodoIdResponse\x12\x18\n\x04todo\x18\x01 \x01(\x0b\x32\n.todo.Todo\"\x1f\n\x11\x44\x65leteTodoRequest\x12\n\n\x02id\x18\x01 \x01(\x04\"%\n\x12\x44\x65leteTodoResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x32\xd4\x02\n\x0bTodoService\x12?\n\nCreateTodo\x12\x17.todo.CreateTodoRequest\x1a\x18.todo.CreateTodoResponse\x12<\n\tListTodos\x12\x16.todo.ListTodosRequest\x1a\x17.todo.ListTodosResponse\x12<\n\tGetTodoId\x12\x16.todo.GetTodoIdRequest\x1a\x17.todo.GetTodoIdResponse\x12\x45\n\x0cUpdateTodoId\x12\x19.todo.UpdateTodoIdRequest\x1a\x1a.todo.UpdateTodoIdResponse\x12\x41\n\x0c\x44\x65leteTodoId\x12\x17.todo.DeleteTodoRequest\x1a\x18.todo.DeleteTodoResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11protos/todo.proto\x12\x04todo\x1a\x15protos/approver.proto\"@\n\x04Todo\x12\n\n\x02id\x18\x01 \x01(\x04\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x11\n\tcompleted\x18\x03 \x01(\x08\x12\x0b\n\x03\x64\x61y\x18\x04 \x01(\x04\"A\n\x11\x43reateTodoRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x11\n\tcompleted\x18\x02 \x01(\x08\x12\x0b\n\x03\x64\x61y\x18\x03 \x01(\x04\".\n\x12\x43reateTodoResponse\x12\x18\n\x04todo\x18\x01 \x01(\x0b\x32\n.todo.Todo\"\x12\n\x10ListTodosRequest\".\n\x11ListTodosResponse\x12\x19\n\x05todos\x18\x01 \x03(\x0b\x32\n.todo.Todo\"\x1e\n\x10GetTodoIdRequest\x12\n\n\x02id\x18\x01 \x01(\x04\";\n\x11GetTodoIdResponse\x12\x1d\n\x04todo\x18\x01 \x01(\x0b\x32\n.todo.TodoH\x00\x88\x01\x01\x42\x07\n\x05_todo\"B\n\x13UpdateTodoIdRequest\x12\n\n\x02id\x18\x01 \x01(\x04\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x11\n\tcompleted\x18\x03 \x01(\x08\"0\n\x14UpdateTodoIdResponse\x12\x18\n\x04todo\x18\x01 \x01(\x0b\x32\n.todo.Todo\"\x1f\n\x11\x44\x65leteTodoRequest\x12\n\n\x02id\x18\x01 \x01(\x04\"%\n\x12\x44\x65leteTodoResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\"y\n\x17GetTodoApproverResponse\x12\x1d\n\x04todo\x18\x01 \x01(\x0b\x32\n.todo.TodoH\x00\x88\x01\x01\x12)\n\x08\x61pprover\x18\x02 \x01(\x0b\x32\x12.approver.ApproverH\x01\x88\x01\x01\x42\x07\n\x05_todoB\x0b\n\t_approver2\x9e\x03\n\x0bTodoService\x12?\n\nCreateTodo\x12\x17.todo.CreateTodoRequest\x1a\x18.todo.CreateTodoResponse\x12<\n\tListTodos\x12\x16.todo.ListTodosRequest\x1a\x17.todo.ListTodosResponse\x12<\n\tGetTodoId\x12\x16.todo.GetTodoIdRequest\x1a\x17.todo.GetTodoIdResponse\x12\x45\n\x0cUpdateTodoId\x12\x19.todo.UpdateTodoIdRequest\x1a\x1a.todo.UpdateTodoIdResponse\x12\x41\n\x0c\x44\x65leteTodoId\x12\x17.todo.DeleteTodoRequest\x1a\x18.todo.DeleteTodoResponse\x12H\n\x0fGetTodoApprover\x12\x16.todo.GetTodoIdRequest\x1a\x1d.todo.GetTodoApproverResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'protos.todo_pb2', _globals)
 if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
-  _globals['_TODO']._serialized_start=27
-  _globals['_TODO']._serialized_end=91
-  _globals['_CREATETODOREQUEST']._serialized_start=93
-  _globals['_CREATETODOREQUEST']._serialized_end=158
-  _globals['_CREATETODORESPONSE']._serialized_start=160
-  _globals['_CREATETODORESPONSE']._serialized_end=206
-  _globals['_LISTTODOSREQUEST']._serialized_start=208
-  _globals['_LISTTODOSREQUEST']._serialized_end=226
-  _globals['_LISTTODOSRESPONSE']._serialized_start=228
-  _globals['_LISTTODOSRESPONSE']._serialized_end=274
-  _globals['_GETTODOIDREQUEST']._serialized_start=276
-  _globals['_GETTODOIDREQUEST']._serialized_end=306
-  _globals['_GETTODOIDRESPONSE']._serialized_start=308
-  _globals['_GETTODOIDRESPONSE']._serialized_end=367
-  _globals['_UPDATETODOIDREQUEST']._serialized_start=369
-  _globals['_UPDATETODOIDREQUEST']._serialized_end=435
-  _globals['_UPDATETODOIDRESPONSE']._serialized_start=437
-  _globals['_UPDATETODOIDRESPONSE']._serialized_end=485
-  _globals['_DELETETODOREQUEST']._serialized_start=487
-  _globals['_DELETETODOREQUEST']._serialized_end=518
-  _globals['_DELETETODORESPONSE']._serialized_start=520
-  _globals['_DELETETODORESPONSE']._serialized_end=557
-  _globals['_TODOSERVICE']._serialized_start=560
-  _globals['_TODOSERVICE']._serialized_end=900
+  _globals['_TODO']._serialized_start=50
+  _globals['_TODO']._serialized_end=114
+  _globals['_CREATETODOREQUEST']._serialized_start=116
+  _globals['_CREATETODOREQUEST']._serialized_end=181
+  _globals['_CREATETODORESPONSE']._serialized_start=183
+  _globals['_CREATETODORESPONSE']._serialized_end=229
+  _globals['_LISTTODOSREQUEST']._serialized_start=231
+  _globals['_LISTTODOSREQUEST']._serialized_end=249
+  _globals['_LISTTODOSRESPONSE']._serialized_start=251
+  _globals['_LISTTODOSRESPONSE']._serialized_end=297
+  _globals['_GETTODOIDREQUEST']._serialized_start=299
+  _globals['_GETTODOIDREQUEST']._serialized_end=329
+  _globals['_GETTODOIDRESPONSE']._serialized_start=331
+  _globals['_GETTODOIDRESPONSE']._serialized_end=390
+  _globals['_UPDATETODOIDREQUEST']._serialized_start=392
+  _globals['_UPDATETODOIDREQUEST']._serialized_end=458
+  _globals['_UPDATETODOIDRESPONSE']._serialized_start=460
+  _globals['_UPDATETODOIDRESPONSE']._serialized_end=508
+  _globals['_DELETETODOREQUEST']._serialized_start=510
+  _globals['_DELETETODOREQUEST']._serialized_end=541
+  _globals['_DELETETODORESPONSE']._serialized_start=543
+  _globals['_DELETETODORESPONSE']._serialized_end=580
+  _globals['_GETTODOAPPROVERRESPONSE']._serialized_start=582
+  _globals['_GETTODOAPPROVERRESPONSE']._serialized_end=703
+  _globals['_TODOSERVICE']._serialized_start=706
+  _globals['_TODOSERVICE']._serialized_end=1120
 # @@protoc_insertion_point(module_scope)
